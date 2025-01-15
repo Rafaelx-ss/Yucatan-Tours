@@ -19,6 +19,9 @@ class CreateBookingsTable extends Migration
             $table->date('date');
             $table->string('status')->default('pending');
             $table->string('payment_status')->default('unpaid');
+            $table->string('name');
+            $table->string('email');
+            $table->string('phone');
             $table->timestamps();
 
             $table->foreign('tour_id')->references('id')->on('tours')->onDelete('cascade');

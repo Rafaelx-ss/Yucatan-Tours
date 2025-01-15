@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
+use App\Models\Tour;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
 {
@@ -11,27 +13,19 @@ class BookingController extends Controller
     {
         $validated = $request->validate([
             'tour_id' => 'required|exists:tours,id',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'required|string|max:20',
             'date' => 'required|date|after:today',
-            'number_of_people' => 'required|integer|min:1'
         ]);
-
-        $booking = auth()->user()->bookings()->create($validated);
-
-        return redirect()->route('bookings.show', $booking)
-            ->with('success', 'Booking created successfully.');
+    
+        $validated['status'] = 'pending';
+        $validated['payment_status'] = 'unpaid';
+    
+        Booking::create($validated);
+    
+        return redirect()->route('tours.index')
+            ->with('success', 'Your booking was created successfully. Please proceed to payment.');
     }
 
-    public function processPayment(Request $request, Booking $booking)
-    {
-        try {
-            $payment = $request->user()
-                ->charge($booking->total * 100, $request->payment_method_id);
-
-            $booking->update(['payment_status' => 'paid']);
-
-            return response()->json(['success' => true]);
-        } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
-        }
-    }
 }

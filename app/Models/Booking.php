@@ -22,11 +22,9 @@ class Booking extends Model
      * @var array
      */
     protected $fillable = [
-        'tour_id',
-        'date',
-        'status',
-        'payment_status',
+        'tour_id', 'name', 'email', 'phone', 'date', 'status', 'payment_status'
     ];
+    
 
     /**
      * Define the relationship with the tour.
