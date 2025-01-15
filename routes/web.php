@@ -1,7 +1,11 @@
 <?php
 
-use App\Http\Controllers\ApiDocumentationController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [ApiDocumentationController::class, 'index'])->name('api-docs.index');
-Route::post('/api-docs', [ApiDocumentationController::class, 'store'])->name('api-docs.store');
+// routes/web.php
+Route::get('/', 'HomeController@index');
+Route::resource('tours', 'TourController');
+Route::resource('bookings', 'BookingController');
+Route::post('contact', 'ContactController@store');
+Route::get('locations/{location}', 'LocationController@show');
+
