@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container mx-auto py-12">
-    <h1 class="text-3xl font-bold mb-8 bg-black text-white">Welcome to Yucatán Tours</h1>
+    <h1 class="text-3xl font-bold mb-8 text-black">Welcome to Yucatán Tours</h1>
     <p class="text-gray-700 mb-8">
         Discover the beauty of Yucatán with our exclusive tours. Explore The Pink Lakes, 
         Mayan ruins, and more!
