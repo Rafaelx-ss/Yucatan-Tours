@@ -1,5 +1,5 @@
 <header class="bg-red-300 text-black">
-    <div class="container mx-auto flex justify-between items-center py-4">
+    <div class="container  mx-auto flex justify-between items-center py-4">
         <!-- Logo Section -->
         <div class="flex items-center">
             <img src="{{ asset('images/coloradas.jpeg') }}" alt="Logo Las Coloradas" class="h-12 mr-4">
