@@ -7,6 +7,7 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\PaymentController;
+use Illuminate\Support\Facades\Artisan;
 
 
 
@@ -20,3 +21,14 @@ Route::post('payment', [PaymentController::class, 'create'])->name('payment.crea
 Route::get('payment/success', [PaymentController::class, 'success'])->name('payment.success');
 Route::get('payment/cancel', [PaymentController::class, 'cancel'])->name('payment.cancel');
 
+
+
+
+
+Route::get('/clear-cache', function() {
+    Artisan::call('cache:clear');
+    Artisan::call('config:clear');
+    Artisan::call('route:clear');
+    Artisan::call('view:clear');
+    return "Caché limpiada";
+});
